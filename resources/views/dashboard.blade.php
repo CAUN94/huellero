@@ -22,8 +22,8 @@
                         </div>
                 
                         <!-- Botón para geolocalizar -->
-                        <div class="flex justify-end">
-                            <button type="button" @click="getGeolocation" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <div class="flex">
+                            <button type="button" @click="getGeolocation" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded">
                                 Geolocalizar
                             </button>
                         </div>
@@ -37,6 +37,15 @@
                         </div>
 
                         <div x-show="showMap" id="map" class="h-64 w-full rounded-lg shadow-md"></div>
+                        <div class="my-4">
+                            <label for="photo" class="block text-gray-700 dark:text-gray-200">Sube una foto:</label>
+                            <input type="file" id="photo" name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*">
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">
+                                Enviar formulario
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
