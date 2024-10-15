@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Registrar entrada de {{ Auth::user()->name }}
+            Registrar entrada de {{ Auth::user()->name }} 
+            {{-- if isset $distance isset and is true show message "Registro realizado" --}}
+            @if (isset($distance) && $distance)
+                <span class="text-green">Registro realizado</span>
+            @endif
         </h2>
     </x-slot>
 
@@ -9,15 +13,16 @@
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form x-data="geolocationApp()" @submit.prevent>
+                    <form action="{{ route('entries.store') }}" method="POST" x-data="geolocationApp()">
+                        @csrf
                         <!-- Select con lugares de ejemplo -->
                         <div class="mb-4">
                             <label for="place" class="block text-gray-700 dark:text-gray-300 font-bold mb-2 ">Selecciona un lugar:</label>
                             <select id="place" name="place" x-model="selectedPlace" class="border-gray-300 rounded-lg mt-2 p-2 w-full text-gray-900">
                                 <option value="" disabled selected>-- Selecciona un lugar --</option>
-                                <option value="place1">Lugar 1</option>
-                                <option value="place2">Lugar 2</option>
-                                <option value="place3">Lugar 3</option>
+                                @foreach ($places as $place)
+                                    <option value="{{ $place->id }}">{{ $place->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                 
@@ -41,10 +46,11 @@
                             <label for="photo" class="block text-gray-700 dark:text-gray-200">Sube una foto:</label>
                             <input type="file" id="photo" name="photo" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" accept="image/*">
                         </div>
+                        {{-- send longitude and latitude value --}}
+                        <input type="hidden" name="latitude" x-model="latitude">
+                        <input type="hidden" name="longitude" x-model="longitude">
                         <div class="mt-4">
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full">
-                                Enviar formulario
-                            </button>
+                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full" value="Registrar entrada">
                         </div>
                     </form>
                 </div>

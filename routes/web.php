@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EntryController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [EntryController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [EntryController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/entries', [EntryController::class, 'index'])->middleware(['auth', 'verified'])->name('entries.index');
+Route::post('/entries', [EntryController::class, 'store'])->middleware(['auth', 'verified'])->name('entries.store');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
