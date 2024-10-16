@@ -9,7 +9,21 @@
         </h2>
     </x-slot>
 
+    
     <div class="py-12">
+        @if (isset($distance))
+            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 pb-2">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        @if (isset($distance) && $distance)
+                            <p class="text-green-500 text-2xl text-center">Registro realizado</p>
+                        @else
+                            <p class="text-red-500 text-2xl text-center">Fuera de Rango</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
