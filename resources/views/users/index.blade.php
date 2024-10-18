@@ -17,7 +17,7 @@
                     </div>
                 @endif 
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <ul class="max-w-lg space-y-1 text-gray-500 list-inside dark:text-gray-400 text-sm text-base sm:text-lg">
+                    <ul class="max-w-xl space-y-1 text-gray-500 list-inside dark:text-gray-400 text-sm text-base sm:text-lg">
                         @foreach($registrations as $registration)
                             <li class="flex items-center">
                                 <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
