@@ -1,31 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Registrar entrada de {{ Auth::user()->name }} 
-            {{-- if isset $distance isset and is true show message "Registro realizado" --}}
-            @if (isset($distance) && $distance)
-                <span class="text-green">Registro realizado</span>
-            @endif
+            Registrar entrada de {{ Auth::user()->name }}             
         </h2>
     </x-slot>
 
     
     <div class="py-12">
-        @if (isset($distance))
-            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 pb-2">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @if (isset($distance) && $distance)
-                            <p class="text-green-500 text-2xl text-center">Registro realizado</p>
-                        @else
-                            <p class="text-red-500 text-2xl text-center">Fuera de Rango</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        @endif
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                @if(session('status'))
+                    <div>
+                        <div class="flash-alert bg-red-500  text-red-100 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Registro Fallido!</strong>
+                            <span class="block sm:inline">Estas fuera de rango.</span>
+                        </div>
+                    </div>
+                @endif
+                
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form action="{{ route('entries.store') }}" method="POST" x-data="geolocationApp()">
                         @csrf
@@ -157,5 +149,9 @@
                 }
             }
         }
+        // Hacer que el mensaje desaparezca después de 5 segundos
+        setTimeout(function() {
+            document.querySelector('.flash-alert ').style.display = 'none';
+        }, 3000);
     </script>
 </x-app-layout>

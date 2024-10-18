@@ -49,6 +49,15 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        $user = Auth::user();
+        if (!$user->approve) {
+            Auth::logout(); // Cerrar la sesión del usuario no aprobado
+
+            throw ValidationException::withMessages([
+                'email' => 'Usuario no habilitado para entrar', // Mensaje personalizado
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

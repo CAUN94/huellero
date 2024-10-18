@@ -38,6 +38,14 @@
                             {{ __('Perfil') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('users.index')">
+                            {{ __('Registros') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('dashboard')">
+                            {{ __('Registrar') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -82,6 +90,14 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Perfil') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('users.index')">
+                    {{ __('Registros') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('dashboard')">
+                    {{ __('Registrar') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

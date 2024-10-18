@@ -44,4 +44,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class)->orderBy('registered_at', 'desc');
+    }
 }
