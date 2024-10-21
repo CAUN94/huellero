@@ -19,7 +19,7 @@
                 @endif
                 
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('entries.store') }}" method="POST" x-data="geolocationApp()">
+                    <form action="{{ route('entries.store') }}" method="POST" x-data="geolocationApp()" enctype="multipart/form-data">
                         @csrf
                         <!-- Select con lugares de ejemplo -->
                         <div class="mb-4">

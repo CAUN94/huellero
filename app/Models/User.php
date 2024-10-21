@@ -49,4 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Registration::class)->orderBy('registered_at', 'desc');
     }
+
+    // Verificar si el usuario es administrador
+    public function isAdmin()
+    {
+        return Administrator::where('user_id', $this->id)->exists();
+    }
 }

@@ -1,10 +1,17 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    
+    @if(session('success'))
+        <div class="alert alert-warning bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4" role="alert">
+            <p>Usuario creado correctamente, debe esperar a que un administrador habilite su cuenta</p>
+            <p>{{ session('status') }}</p>
+        </div>
+    @endif
+    
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />

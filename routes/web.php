@@ -15,6 +15,9 @@ Route::post('/entries', [EntryController::class, 'store'])->middleware(['auth', 
 // Route user registers
 Route::get('/users', [EntryController::class, 'registers'])->middleware(['auth', 'verified'])->name('users.index');
 
+// Route admin
+Route::get('/admin', [EntryController::class, 'administrador'])->name('admin');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

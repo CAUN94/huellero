@@ -34,6 +34,11 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            <x-dropdown-link :href="route('admin')">
+                                {{ __('Administrador') }}
+                            </x-dropdown-link>
+                        @endif
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Perfil') }}
                         </x-dropdown-link>
@@ -88,6 +93,11 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                @if (Auth::check() && Auth::user()->isAdmin())
+                    <x-responsive-nav-link :href="route('admin')">
+                        {{ __('Administrador') }}
+                    </x-responsive-nav-link>
+                @endif
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Perfil') }}
                 </x-responsive-nav-link>
