@@ -16,8 +16,9 @@
                         </div>
                     </div>
                 @endif 
-                <div class="px-6 pt-6 pb-4 text-gray-900 dark:text-gray-100">
-                        Lugares ({{ $places->total() }})
+                <div class="px-6 pt-6 pb-4 text-gray-900 dark:text-gray-100 flex justify-between items-center">
+                        <span>Lugares ({{ $places->total() }})</span>
+                        <a href="{{ route('admin.places.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold px-2 py-0.5 rounded-full">Nuevo</a>
                 </div>
                 @foreach ($places as $place)
                     <div class="mb-4 mx-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">

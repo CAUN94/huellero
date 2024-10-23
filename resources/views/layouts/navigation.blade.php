@@ -38,6 +38,12 @@
                             <x-dropdown-link :href="route('admin')">
                                 {{ __('Administrador') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.users.index')">
+                                {{ __('Usuarios') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.places.index')">
+                                {{ __('Lugares') }}
+                            </x-dropdown-link>
                         @endif
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Perfil') }}
@@ -97,6 +103,15 @@
                     <x-responsive-nav-link :href="route('admin')">
                         {{ __('Administrador') }}
                     </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.users.index')">
+                        {{ __('Usuarios') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.places.index')">
+                        {{ __('Lugares') }}
+                    </x-responsive-nav-link>
+                    {{-- <x-responsive-nav-link :href="route('admin.users')">
+                        {{ __('Usuarios') }}
+                    </x-responsive-nav-link> --}}
                 @endif
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Perfil') }}

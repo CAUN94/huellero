@@ -12,7 +12,9 @@
                 @if(session('status'))
                     <div>
                         <div class="flash-alert bg-green-500  text-green-100 px-4 py-3 rounded relative" role="alert">
-                            <strong class="font-bold">Registro Exitoso!</strong>
+                            <strong class="font-bold">
+                                Registro Exitoso!
+                            </strong>
                         </div>
                     </div>
                 @endif 
