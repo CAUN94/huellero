@@ -85,7 +85,7 @@ class EntryController extends Controller
 
         if ($user && $user->isAdmin()) {
             $registrations = Registration::with('place')->paginate(5, ['*'], 'registrations_page');
-            $places = Place::with('registrations')->paginate(5, ['*'], 'places_page');
+            $places = Place::withCount('registrations')->orderBy('registrations_count', 'desc')->paginate(5, ['*'], 'places_page');
             $users = User::where('approve', 1)->paginate(5, ['*'], 'users_page');
             $users_not_approved = User::where('approve', 0)->paginate(5, ['*'], 'users_not_approved_page');
 
