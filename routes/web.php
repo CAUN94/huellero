@@ -17,6 +17,8 @@ Route::get('/users', [EntryController::class, 'registers'])->middleware(['auth',
 
 // Route admin
 Route::get('/admin', [EntryController::class, 'administrador'])->name('admin');
+Route::patch('/admin/users_aprove/{id}', [EntryController::class, 'users_aprove'])->name('admin.users_aprove.update');
+Route::delete('/admin/users_aprove/{id}', [EntryController::class, 'users_aprove_destroy'])->name('admin.users_aprove.destroy');
 
 
 Route::middleware('auth')->group(function () {

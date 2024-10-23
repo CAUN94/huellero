@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Place;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Registration;
+use App\Models\User;
 
 class EntryController extends Controller
 {
@@ -83,9 +84,29 @@ class EntryController extends Controller
         $user = Auth::user();
 
         if ($user && $user->isAdmin()) {
-            return view('admin.dashboard'); // Vista de administrador
+            $registrations = Registration::with('place')->paginate(5, ['*'], 'registrations_page');
+            $places = Place::with('registrations')->paginate(5, ['*'], 'places_page');
+            $users = User::where('approve', 1)->paginate(5, ['*'], 'users_page');
+            $users_not_approved = User::where('approve', 0)->paginate(5, ['*'], 'users_not_approved_page');
+
+            return view('admin.dashboard',compact('places','users','users_not_approved')); // Vista de administrador
         }
 
         return redirect()->route('dashboard')->with('error', 'No tienes permisos de administrador');
+    }
+
+    public function users_aprove($id)
+    {
+        $user = User::find($id);
+        $user->approve = !$user->approve;
+        $user->save();
+        return redirect()->route('admin');
+    }
+
+    public function users_aprove_destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin');
     }
 }

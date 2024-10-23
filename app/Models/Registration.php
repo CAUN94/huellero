@@ -34,4 +34,7 @@ class Registration extends Model
     {
         return $this->belongsTo(Place::class);
     }
+
+    // countRegistrations static
+
 }

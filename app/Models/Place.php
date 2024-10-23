@@ -44,6 +44,9 @@ class Place extends Model
         }
     }
 
-
-        
+    // Relación con el modelo Registration (registros)
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }    
 }
